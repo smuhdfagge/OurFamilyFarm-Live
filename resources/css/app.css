@@ -1,0 +1,63 @@
+@import url('https://fonts.bunny.net/css?family=poppins:300,400,500,600,700|nunito-sans:400,500,600,700|playfair-display:400,500,600,700&display=swap');
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --font-sans: 'Nunito Sans', sans-serif;
+  --font-display: 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --color-leaf: #8CC63F;
+  --color-leaf-dark: #5F9A24;
+  --color-leaf-light: #B4DD7F;
+  --color-earth: #6B4226;
+  --color-earth-dark: #4A2D17;
+  --color-earth-light: #9C8878;
+  --color-sun: #F2A03D;
+  --color-sun-dark: #D4821F;
+  --color-cream: #FAF7F2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-earth bg-cream;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-earth;
+  }
+
+  .font-display {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  [x-cloak] { display: none !important; }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-reveal], [data-reveal].revealed {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
