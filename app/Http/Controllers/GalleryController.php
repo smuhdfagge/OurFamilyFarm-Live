@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GalleryImage;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
 {
     public function index()
     {
-        $images = Cache::remember('gallery_images', 3600, fn () => GalleryImage::orderBy('sort_order')->get());
+        $images = collect(File::files(public_path('gallery')))
+            ->filter(fn ($file) => in_array(strtolower($file->getExtension()), ['heic', 'jpeg', 'jpg', 'png', 'webp'], true))
+            ->sortBy(fn ($file) => $file->getFilename())
+            ->values()
+            ->map(fn ($file) => (object) [
+                'title' => pathinfo($file->getFilename(), PATHINFO_FILENAME),
+                'image_url' => asset('gallery/'.$file->getFilename()),
+            ]);
 
         return view('pages.gallery', compact('images'));
     }
