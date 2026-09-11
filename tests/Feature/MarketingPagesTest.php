@@ -29,4 +29,5 @@ class MarketingPagesTest extends TestCase
         $response->assertOk();
         $response->assertSeeText('Get in touch');
     }
+
 }

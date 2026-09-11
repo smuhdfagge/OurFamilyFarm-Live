@@ -16,7 +16,7 @@
                 <article class="rounded-[2rem] bg-white p-4 shadow-sm ring-1 ring-earth/10">
                     <div class="relative overflow-hidden rounded-[1.5rem] border-4 border-earth bg-cream p-3">
                         <div class="absolute -bottom-2 right-5 h-8 w-8 bg-leaf"></div>
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80" alt="Fatima Muhammad Adam" class="h-72 w-full rounded-[1.25rem] object-cover" loading="lazy" width="600" height="720" />
+                        <img src="{{ asset('fatima.PNG') }}" alt="Fatima Muhammad Adam" class="h-72 w-full rounded-[1.25rem] object-cover" loading="lazy" width="600" height="720" />
                     </div>
                     <div class="mt-4">
                         <h3 class="text-xl font-bold text-earth">Fatima Muhammad Adam</h3>

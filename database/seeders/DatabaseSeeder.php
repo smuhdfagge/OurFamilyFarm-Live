@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $team = [
             ['name' => 'Malam Ahmad Hussain Abubakar', 'role' => 'Founder, Our Family Farm Nig. Ltd.', 'title' => 'Founder, Our Family Farm Nig. Ltd.', 'bio' => 'Founder, Our Family Farm Nig. Ltd.', 'image' => '/ahmad.PNG', 'sort_order' => 1],
-            ['name' => 'Fatima Muhammad Adam', 'role' => 'Project Manager', 'title' => 'Project Manager', 'bio' => 'Project Manager', 'image' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80', 'sort_order' => 2],
+            ['name' => 'Fatima Muhammad Adam', 'role' => 'Project Manager', 'title' => 'Project Manager', 'bio' => 'Project Manager', 'image' => '/fatima.PNG', 'sort_order' => 2],
             ['name' => 'Aminu Abba Wada Waziri', 'role' => 'Chief Marketing Executive', 'title' => 'Chief Marketing Executive', 'bio' => 'Chief Marketing Executive', 'image' => 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80', 'sort_order' => 3],
         ];
 
