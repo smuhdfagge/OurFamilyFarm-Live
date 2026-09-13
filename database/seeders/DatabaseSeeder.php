@@ -5,12 +5,22 @@ namespace Database\Seeders;
 use App\Models\GalleryImage;
 use App\Models\Service;
 use App\Models\TeamMember;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Farm Admin',
+                'password' => 'password',
+                'email_verified_at' => now(),
+            ],
+        );
+
         $services = [
             ['title' => 'Crop Production', 'slug' => 'crop-production', 'summary' => 'Sustainable crop planning and production strategies for quality yields.', 'description' => 'We support crop production through practical field planning, growing advice, soil-aware decisions and productivity improvements that help farmers and institutions achieve better results with less waste.', 'icon' => '🌾', 'sort_order' => 1],
             ['title' => 'Soil Analysis', 'slug' => 'soil-analysis', 'summary' => 'Field-informed soil testing and fertility management.', 'description' => 'Our soil analysis service helps identify nutrient needs, soil health issues and crop suitability so recommendations are rooted in evidence and long-term productivity.', 'icon' => '🧪', 'sort_order' => 2],

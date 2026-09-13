@@ -1,5 +1,10 @@
 <x-guest-layout>
-    <!-- Session Status -->
+    <div class="mb-8">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-leaf-dark">Welcome back</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-earth">Sign in to your workspace</h2>
+        <p class="mt-2 text-sm leading-6 text-earth-light">Keep your public farm story fresh and useful.</p>
+    </div>
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
@@ -27,19 +32,19 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded border-earth/25 text-leaf shadow-sm focus:ring-leaf" name="remember">
+                <span class="ms-2 text-sm text-earth-light">{{ __('Remember me') }}</span>
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="mt-6 flex flex-col-reverse items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                <a class="text-sm font-semibold text-earth-light underline decoration-leaf decoration-2 underline-offset-4 transition hover:text-leaf-dark focus:outline-none focus:ring-2 focus:ring-leaf" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class="justify-center rounded-xl bg-leaf px-6 py-3 font-bold text-white shadow-sm transition hover:bg-leaf-dark focus:bg-leaf-dark focus:ring-leaf active:bg-leaf-dark">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

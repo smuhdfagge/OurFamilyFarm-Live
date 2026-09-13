@@ -1,0 +1,16 @@
+<form method="POST" action="{{ $formAction }}" class="max-w-3xl rounded-2xl border border-earth/10 bg-[#fffdfa] p-6 shadow-sm sm:p-8">
+    @csrf
+    @if ($formMethod !== 'POST') @method($formMethod) @endif
+    @if ($errors->any())
+        <div class="mb-6 rounded-xl border border-[#b05f50]/20 bg-[#b05f50]/10 px-4 py-3 text-sm text-[#8e4135]"><p class="font-bold">Please check the form.</p><ul class="mt-1 list-inside list-disc">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
+    @endif
+    <div class="grid gap-6 sm:grid-cols-2">
+        <label class="block"><span class="text-sm font-bold text-earth">Service name</span><input name="title" value="{{ old('title', $service->title) }}" required class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf"></label>
+        <label class="block"><span class="text-sm font-bold text-earth">URL slug</span><input name="slug" value="{{ old('slug', $service->slug) }}" required class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf"><span class="mt-1 block text-xs text-earth-light">Use lowercase words separated by hyphens.</span></label>
+        <label class="block sm:col-span-2"><span class="text-sm font-bold text-earth">Summary</span><textarea name="summary" rows="3" maxlength="500" required class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf">{{ old('summary', $service->summary) }}</textarea><span class="mt-1 block text-xs text-earth-light">A short description used on service cards and search previews.</span></label>
+        <label class="block sm:col-span-2"><span class="text-sm font-bold text-earth">Description</span><textarea name="description" rows="7" required class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf">{{ old('description', $service->description) }}</textarea></label>
+        <label class="block"><span class="text-sm font-bold text-earth">Icon</span><input name="icon" value="{{ old('icon', $service->icon ?: '🌾') }}" maxlength="20" class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf"><span class="mt-1 block text-xs text-earth-light">Use an emoji or short symbol.</span></label>
+        <label class="block"><span class="text-sm font-bold text-earth">Display order</span><input type="number" min="0" name="sort_order" value="{{ old('sort_order', $service->sort_order) }}" required class="mt-2 w-full rounded-xl border-earth/20 bg-white px-4 py-3 text-sm focus:border-leaf focus:ring-leaf"><span class="mt-1 block text-xs text-earth-light">Lower numbers appear first.</span></label>
+    </div>
+    <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><a href="{{ route('admin.services.index') }}" class="inline-flex items-center justify-center rounded-xl border border-earth/15 px-5 py-3 text-sm font-bold text-earth hover:bg-cream">Cancel</a><button type="submit" class="inline-flex items-center justify-center rounded-xl bg-earth px-5 py-3 text-sm font-bold text-white hover:bg-earth-dark">{{ $formMethod === 'POST' ? 'Add service' : 'Save changes' }}</button></div>
+</form>
