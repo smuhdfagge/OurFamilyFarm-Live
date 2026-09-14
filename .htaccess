@@ -2,8 +2,8 @@
     RewriteEngine On
     DirectoryIndex index.php
 
-    RewriteRule ^public/ - [L]
-    RewriteCond C:/xampp1/htdocs/OurFamilyFarm/public/$1 -f
+    RewriteRule ^public(?:/(.*))?$ /$1 [R=301,L,NE]
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
     RewriteRule ^(.+)$ public/$1 [L]
     RewriteRule ^$ index.php [L]
     RewriteCond %{REQUEST_FILENAME} !-f
