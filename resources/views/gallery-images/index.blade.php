@@ -19,7 +19,7 @@
         @forelse ($galleryImages as $galleryImage)
             <div class="grid gap-4 border-b border-earth/10 px-5 py-5 last:border-0 md:grid-cols-[1.4fr_1fr_110px_140px] md:items-center md:px-6">
                 <div class="flex items-center gap-3">
-                    <img src="{{ $galleryImage->image_url }}" alt="{{ $galleryImage->title }}" class="h-14 w-20 rounded-xl object-cover">
+                    <img src="{{ asset($galleryImage->image_url) }}" alt="{{ $galleryImage->title }}" class="h-14 w-20 rounded-xl object-cover">
                     <div class="min-w-0"><p class="truncate font-extrabold text-earth">{{ $galleryImage->title }}</p><p class="truncate text-xs text-earth-light">{{ $galleryImage->description ?: 'No description' }}</p></div>
                 </div>
                 <p class="text-sm font-semibold text-earth-light">{{ $galleryImage->category }}</p>

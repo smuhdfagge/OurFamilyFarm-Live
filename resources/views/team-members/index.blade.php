@@ -19,7 +19,7 @@
         @forelse ($teamMembers as $teamMember)
             <div class="grid gap-4 border-b border-earth/10 px-5 py-5 last:border-0 md:grid-cols-[1fr_1fr_110px_140px] md:items-center md:px-6">
                 <div class="flex items-center gap-3">
-                    <img src="{{ $teamMember->image ?: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80' }}" alt="" class="h-12 w-12 rounded-xl object-cover">
+                    <img src="{{ asset($teamMember->image ?: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80') }}" alt="" class="h-12 w-12 rounded-xl object-cover">
                     <div><p class="font-extrabold text-earth">{{ $teamMember->name }}</p><p class="text-xs text-earth-light">{{ $teamMember->title ?: 'Team member' }}</p></div>
                 </div>
                 <p class="text-sm font-semibold text-earth-light">{{ $teamMember->role }}</p>

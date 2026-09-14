@@ -1,7 +1,7 @@
 <x-site-layout title="Farm Gallery | Our Family Farm Nig. Ltd." description="Explore the work and places of Our Family Farm Nig. Ltd.">
     <section
         x-data="galleryLightbox()"
-        x-init="setImages(@js($images->values()->map(fn ($image) => ['title' => $image->title, 'category' => $image->category, 'image_url' => $image->image_url, 'description' => $image->description])))"
+        x-init="setImages(@js($images->values()->map(fn ($image) => ['title' => $image->title, 'category' => $image->category, 'image_url' => asset($image->image_url), 'description' => $image->description])))"
         @keydown.escape.window="close()"
         @keydown.arrow-left.window="previous()"
         @keydown.arrow-right.window="next()"
@@ -31,7 +31,7 @@
                         class="group relative block aspect-[4/3] h-full overflow-hidden rounded-2xl bg-cream text-left shadow-sm ring-1 ring-earth/10 focus:outline-none focus:ring-2 focus:ring-leaf focus:ring-offset-4"
                         aria-label="View {{ $image->title }} full screen"
                     >
-                        <img src="{{ $image->image_url }}" alt="{{ $image->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" width="900" height="675">
+                        <img src="{{ asset($image->image_url) }}" alt="{{ $image->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" width="900" height="675">
                         <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-5 pb-4 pt-12 text-sm font-bold text-white">{{ $image->title }}</span>
                     </button>
                 @endforeach
