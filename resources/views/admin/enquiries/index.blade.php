@@ -11,9 +11,6 @@
         <a href="{{ route('contact') }}" class="inline-flex items-center justify-center gap-2 rounded-xl border border-earth/15 bg-white px-4 py-3 text-sm font-bold text-earth shadow-sm transition hover:border-leaf hover:text-leaf-dark">View contact page <span aria-hidden="true">↗</span></a>
     </div>
 
-    @if (session('status'))
-        <div class="mb-6 rounded-xl border border-leaf/20 bg-leaf/10 px-4 py-3 text-sm font-bold text-leaf-dark">{{ session('status') }}</div>
-    @endif
 
     <section class="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Enquiry summary">
         <div class="rounded-2xl border border-earth/10 bg-[#fffdfa] p-5 shadow-sm"><p class="text-xs font-bold uppercase tracking-[0.14em] text-earth-light">All enquiries</p><p class="mt-3 text-3xl font-black text-earth">{{ $totalCount }}</p><p class="mt-1 text-xs text-earth-light">Every message received</p></div>

@@ -3,9 +3,9 @@
         <div>
             <p class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-leaf-dark">Workspace access</p>
             <h1 class="text-3xl font-black tracking-tight text-earth sm:text-4xl">Users</h1>
-            <p class="mt-2 max-w-2xl text-sm leading-6 text-earth-light">Review the people who can sign in to your farm workspace.</p>
+            <p class="mt-2 max-w-2xl text-sm leading-6 text-earth-light">Everyone listed here can sign in and manage the website. New accounts can only be added from this page.</p>
         </div>
-        <span class="inline-flex items-center justify-center rounded-xl border border-earth/15 bg-white px-4 py-3 text-sm font-bold text-earth">{{ number_format($totalCount) }} total users</span>
+        <a href="{{ route('admin.users.create') }}" class="inline-flex items-center justify-center gap-2 rounded-xl bg-leaf px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-leaf-dark"><span class="text-lg">+</span> Add user</a>
     </div>
 
     <section class="mb-6 grid gap-3 sm:grid-cols-3" aria-label="User summary">
@@ -23,15 +23,26 @@
             </form>
             <p class="mt-3 text-xs font-semibold text-earth-light">Showing {{ $users->count() }} of {{ $users->total() }} matching users</p>
         </div>
-        <div class="hidden grid-cols-[1.4fr_1.4fr_150px_150px] gap-4 border-b border-earth/10 px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-earth-light md:grid">
-            <span>User</span><span>Email</span><span>Status</span><span>Joined</span>
+        <div class="hidden grid-cols-[1.4fr_1.4fr_130px_130px_90px] gap-4 border-b border-earth/10 px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-earth-light md:grid">
+            <span>User</span><span>Email</span><span>Status</span><span>Joined</span><span></span>
         </div>
         @forelse ($users as $user)
-            <div class="grid gap-3 border-b border-earth/10 px-5 py-5 last:border-0 md:grid-cols-[1.4fr_1.4fr_150px_150px] md:items-center md:px-6">
+            <div class="grid gap-3 border-b border-earth/10 px-5 py-5 last:border-0 md:grid-cols-[1.4fr_1.4fr_130px_130px_90px] md:items-center md:px-6">
                 <div class="flex items-center gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf text-sm font-extrabold text-white">{{ strtoupper(substr($user->name, 0, 1)) }}</span><div class="min-w-0"><p class="truncate font-extrabold text-earth">{{ $user->name }}</p><p class="text-xs text-earth-light md:hidden">{{ $user->email }}</p></div></div>
                 <a href="mailto:{{ $user->email }}" class="truncate text-sm font-semibold text-leaf-dark hover:text-leaf">{{ $user->email }}</a>
                 <span class="w-fit rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide {{ $user->email_verified_at ? 'bg-leaf/15 text-leaf-dark' : 'bg-sun/20 text-earth' }}">{{ $user->email_verified_at ? 'Verified' : 'Pending' }}</span>
                 <time class="text-sm text-earth-light" datetime="{{ $user->created_at->toIso8601String() }}">{{ $user->created_at->format('M j, Y') }}</time>
+                <div class="md:text-right">
+                    @if ($user->is(auth()->user()))
+                        <span class="text-xs font-bold uppercase tracking-wide text-earth-light">You</span>
+                    @else
+                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Remove this user? They will no longer be able to sign in.');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-sm font-bold text-[#b05f50] hover:text-[#8e4135]">Remove</button>
+                        </form>
+                    @endif
+                </div>
             </div>
         @empty
             <div class="px-6 py-14 text-center"><p class="font-bold text-earth">No users found.</p><p class="mt-1 text-sm text-earth-light">Try a different name or email search.</p></div>

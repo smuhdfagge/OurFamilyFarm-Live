@@ -63,6 +63,7 @@ class ProfileTest extends TestCase
 
     public function test_user_can_delete_their_account(): void
     {
+        User::factory()->create(); // someone else keeps access to the admin
         $user = User::factory()->create();
 
         $response = $this

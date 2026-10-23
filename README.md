@@ -38,11 +38,23 @@ Premium agricultural production and consultancy marketing website for a register
 - Keep the `slug` unique for each service.
 - The detail page is automatically resolved by the slug in [routes/web.php](routes/web.php).
 
+## Admin dashboard
+
+Sign in at `/login` to reach `/dashboard`. The first account comes from the seeder: `admin@example.com` / `password`. **Change this password (My profile) or add your own account and remove it before going live.**
+
+- **Overview** – content counts, enquiries over the last 14 days, enquiry status breakdown, recent enquiries and quick actions.
+- **Services, Gallery, Team** – add, edit and remove what shows on the public pages (the public page cache is cleared on every change).
+- **Enquiries** – search, filter by status, reply by email or phone, update status, remove. The sidebar shows how many are still new.
+- **Users** – everyone here can manage the site. Public sign-up is turned off; new accounts are added from **Users → Add user**. You can't remove your own account from this list, and the last remaining account can't be deleted.
+- **My profile** – change your name, email and password.
+
 ## Deployment notes
 
 - Use PHP 8.2+ and Composer on a Linux VPS or shared hosting.
 - Ensure `storage` and `bootstrap/cache` are writable.
 - Set `APP_ENV=production`, `APP_DEBUG=false`, and run `php artisan optimize` before launch.
+- Run `php artisan storage:link` once so uploaded gallery and team photos show.
+- Run `npm run build` after pulling changes so the admin styles are up to date.
 
 ## Notes
 
