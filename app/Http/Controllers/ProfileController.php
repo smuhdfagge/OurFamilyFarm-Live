@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,11 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        if (User::count() <= 1) {
+            return Redirect::route('profile.edit')
+                ->withErrors(['password' => 'This is the only account left. Add another user before deleting it.'], 'userDeletion');
+        }
 
         Auth::logout();
 

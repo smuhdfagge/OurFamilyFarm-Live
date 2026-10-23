@@ -28,7 +28,7 @@ Route::get('/dashboard', DashboardController::class)
 
 Route::middleware('auth')->group(function () {
     Route::resource('admin/enquiries', AdminEnquiryController::class)->only(['index', 'show', 'update', 'destroy'])->names('admin.enquiries');
-    Route::get('admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::resource('admin/users', AdminUserController::class)->only(['index', 'create', 'store', 'destroy'])->names('admin.users');
     Route::resource('admin/services', AdminServiceController::class)->except('show')->names('admin.services');
     Route::resource('gallery-images', GalleryImageController::class)->except('show');
     Route::resource('team-members', TeamMemberController::class)->except('show');

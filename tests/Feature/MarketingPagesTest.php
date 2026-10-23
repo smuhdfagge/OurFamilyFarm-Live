@@ -2,10 +2,20 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class MarketingPagesTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed();
+    }
+
     public function test_homepage_renders(): void
     {
         $response = $this->get('/');
@@ -27,7 +37,7 @@ class MarketingPagesTest extends TestCase
         $response = $this->get('/contact');
 
         $response->assertOk();
-        $response->assertSeeText('Get in touch');
+        $response->assertSeeText('Head Office');
     }
 
 }

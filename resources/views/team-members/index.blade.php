@@ -8,9 +8,6 @@
         <a href="{{ route('team-members.create') }}" class="inline-flex items-center justify-center gap-2 rounded-xl bg-leaf px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-leaf-dark"><span class="text-lg">+</span> Add team member</a>
     </div>
 
-    @if (session('status'))
-        <div class="mb-6 rounded-xl border border-leaf/20 bg-leaf/10 px-4 py-3 text-sm font-bold text-leaf-dark">{{ session('status') }}</div>
-    @endif
 
     <section class="overflow-hidden rounded-2xl border border-earth/10 bg-[#fffdfa] shadow-sm">
         <div class="hidden grid-cols-[1fr_1fr_110px_140px] gap-4 border-b border-earth/10 px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-earth-light md:grid">

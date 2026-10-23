@@ -1,19 +1,22 @@
 <x-admin-layout title="View enquiry">
     <div class="mb-8"><a href="{{ route('admin.enquiries.index') }}" class="text-sm font-bold text-leaf-dark hover:text-leaf">← Back to enquiries</a><h1 class="mt-4 text-3xl font-black tracking-tight text-earth">{{ $enquiry->name }}</h1><p class="mt-2 text-sm text-earth-light">Received {{ $enquiry->created_at->format('F j, Y \a\t g:i A') }}</p></div>
 
-    @if (session('status'))
-        <div class="mb-6 rounded-xl border border-leaf/20 bg-leaf/10 px-4 py-3 text-sm font-bold text-leaf-dark">{{ session('status') }}</div>
-    @endif
 
     <div class="grid max-w-5xl gap-6 lg:grid-cols-[1.35fr_0.65fr]">
         <article class="rounded-2xl border border-earth/10 bg-[#fffdfa] p-6 shadow-sm sm:p-8">
             <p class="text-xs font-bold uppercase tracking-[0.18em] text-leaf-dark">Message</p>
             <p class="mt-5 whitespace-pre-line text-base leading-8 text-earth/80">{{ $enquiry->message }}</p>
+            <div class="mt-8 flex flex-wrap gap-3 border-t border-earth/10 pt-6">
+                <a href="mailto:{{ $enquiry->email }}?subject={{ rawurlencode('Re: your enquiry'.($enquiry->service ? ' about '.$enquiry->service : '').' – Our Family Farm') }}" class="inline-flex items-center gap-2 rounded-xl bg-leaf px-5 py-3 text-sm font-bold text-white hover:bg-leaf-dark">Reply by email <span aria-hidden="true">↗</span></a>
+                @if ($enquiry->phone)
+                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $enquiry->phone) }}" class="inline-flex items-center gap-2 rounded-xl border border-earth/15 px-5 py-3 text-sm font-bold text-earth hover:border-leaf hover:text-leaf-dark">Call {{ $enquiry->phone }}</a>
+                @endif
+            </div>
         </article>
         <aside class="space-y-6">
             <section class="rounded-2xl border border-earth/10 bg-[#fffdfa] p-6 shadow-sm">
                 <p class="text-xs font-bold uppercase tracking-[0.18em] text-leaf-dark">Contact details</p>
-                <dl class="mt-5 space-y-4 text-sm"><div><dt class="font-bold text-earth-light">Email</dt><dd class="mt-1"><a href="mailto:{{ $enquiry->email }}" class="font-semibold text-leaf-dark hover:text-leaf">{{ $enquiry->email }}</a></dd></div><div><dt class="font-bold text-earth-light">Phone</dt><dd class="mt-1"><a href="tel:{{ $enquiry->phone }}" class="font-semibold text-leaf-dark hover:text-leaf">{{ $enquiry->phone }}</a></dd></div><div><dt class="font-bold text-earth-light">Service</dt><dd class="mt-1 font-semibold text-earth">{{ $enquiry->service ?: 'General enquiry' }}</dd></div></dl>
+                <dl class="mt-5 space-y-4 text-sm"><div><dt class="font-bold text-earth-light">Email</dt><dd class="mt-1"><a href="mailto:{{ $enquiry->email }}" class="font-semibold text-leaf-dark hover:text-leaf">{{ $enquiry->email }}</a></dd></div><div><dt class="font-bold text-earth-light">Phone</dt><dd class="mt-1"><a href="tel:{{ preg_replace('/[^0-9+]/', '', $enquiry->phone) }}" class="font-semibold text-leaf-dark hover:text-leaf">{{ $enquiry->phone }}</a></dd></div><div><dt class="font-bold text-earth-light">Service</dt><dd class="mt-1 font-semibold text-earth">{{ $enquiry->service ?: 'General enquiry' }}</dd></div></dl>
             </section>
             <section class="rounded-2xl bg-earth p-6 text-white shadow-soft">
                 <p class="text-xs font-bold uppercase tracking-[0.18em] text-leaf-light">Workflow</p>
